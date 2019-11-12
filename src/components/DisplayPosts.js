@@ -16,9 +16,11 @@ class DisplayPosts extends Component {
         this.createPostListener = API.graphql(graphqlOperation(onCreatePost)).subscribe({
             next: postData => {
                 const newPost = postData.value.data.onCreatePost;
+                console.log(newPost);
                 const previousPosts = this.state.posts.filter(
                     post => post.id !== newPost.id
                 )
+                console.log(previousPosts);
                 const updatedPosts = [newPost, ...previousPosts]
                 this.setState({ posts: updatedPosts})
             }
